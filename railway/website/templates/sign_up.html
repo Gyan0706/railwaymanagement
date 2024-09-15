@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}User Details{% endblock %}
+
+{% block head %}
+<style>
+  /* Your existing styles here */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-100%); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-image: url('back4.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+  h1 {
+    font-size: 2.5em;
+    color: #fff;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+  .details-container {
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: slideIn 1s ease-out;
+  }
+  p {
+    margin: 10px 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1em;
+    color: #333;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #746797;
+  }
+  button {
+    border-radius: 5px;
+    border: 1px solid #746797;
+    background-color: #5cb85c; /* Changed button color */
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #4cae4c; /* Darker shade for hover effect */
+  }
+  /* ... rest of your styles ... */
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>New Customer Sign In</h1>
+<div class="details-container">
+  <form action="{{ url_for('auth.sign_up') }}" method="post" enctype="multipart/form-data">
+    <!-- Your existing form content -->
+    <p>Name <input type="text" name="name" id="name" placeholder="Enter your name"></p>
+    <p>Age <input type="text" name="age" id='age'placeholder="Enter your age"></p>
+    <p>Gender <input type="text" name="gender" id="gender" placeholder="Enter your gender"></p>
+    <p>Contact <input type="text" name="contact" id="contact" placeholder="Enter your contact"></p>
+    <p>Username <input type="text" name="username" id="username" placeholder="Enter your username"></p>
+    <p>password <input type="password" name="password1" id="password1"  placeholder="Enter your password"></p>
+    <p>Confirm password <input type="password" name="password2" id="password2" placeholder="Reenter password"></p>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+{% endblock %}

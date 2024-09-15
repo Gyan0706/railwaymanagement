@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Train Schedule{% endblock %}
+
+{% block head %}
+<style>
+  .schedule-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+  h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  .no-schedule {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="schedule-container">
+  <h2>Train Schedule</h2>
+  {% if schedules %}
+  <table>
+    <thead>
+    <tr>
+      <th>Train Name</th>
+      <th>Departure Station</th>
+      <th>Arrival Station</th>
+      <th>Departure Time</th>
+      <th>Arrival Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for schedule in schedules %}
+    <tr>
+      <td>{{ schedule.train_name }}</td>
+      <td>{{ schedule.departure_station }}</td>
+      <td>{{ schedule.arrival_station }}</td>
+      <td>{{ schedule.departure_time.strftime('%H:%M') }}</td>
+      <td>{{ schedule.arrival_time.strftime('%H:%M') }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="no-schedule">No schedules available at the moment.</p>
+  {% endif %}
+</div>
+{% endblock %}
